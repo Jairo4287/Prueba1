@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JMS Page</title>
+    <meta name="description" content="Roughly 155 characters">
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link href="dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+    <body>
+        <div class="card mat-card" id="first-card">
+            <div id="profile-background"><img src="profile.jpeg"></div>
+            <div id="info" style="padding: 16px;">
+                <div id=info-img>
+                    <img class="profile-image" src="332726252.jpg"></div>
+                    <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen"></i></a></div>
+            </div>
+            
+            <div id="info-data">
+            <div>
+                <h1>Jairo Santillán</h1>
+                <div id="info-company">Informático en Municipalidad de Rafaela</div>
+                <div id="info-contact">
+                    <span>Rafaela (Argentina)</span>
+                    <span><a href="#">Información de Contacto</a></span>
+                </div>           
+            </div>
+            <ul id="info-details">
+                <li><a href="https://www.rafaela.gob.ar/">
+                    <img src="logomuni.png">
+                    <h2>Municipalidad de Rafaela</h2>
+                    </a></li>
+                </li>
+            </ul>
+            </div>
+            <div id="info-actions">
+                <button type="button" class="btn btn-primary">Tengo interés en:</button>
+                <button type="button" class="btn btn-light">Añadir Sección</button>
+                <button type="button" class="btn btn-light">Más</button>
+            </div>
+        </div>
+        
+        <div class="card mat-card">
+            <div class="card-titles">
+                <h2>Acerca de</h2>
+                <div class="btn-edit" onclick="cambiar_parrafo()">
+                    <a href="#" class="btn-right">
+                        <i class="fa fa-pen"></i>
+                    </a>
+                </div>
+            </div>
+        
+        <div>
+            <p id="text-acercade">Técnico en Informático, considerado el mejor.</p>
+        </div>
+        <div>
+            <input id="edit-acercade" type="text" oninput="myFunction2(this.value)" style="display:none">
+        </div>
+      </div>
+
+      <input type="file" id="file1" onchange="showfile(this)">
+
+      <script>
+        function cambiar_parrafo(){
+            document.getElementById("edit-acercade").style.display="block";
+            let texto = document.getElementById("text-acercade").innerText ;
+            console.log(texto) ;
+        };
+
+        function myFunction2(valor) {
+            document.getElementById("text-acercade").innerText=valor ;
+        }
+
+        // controla si se presiona un enter.
+
+        let textarea=document.getElementById("edit-acercade")
+        textarea.addEventListener('keyup', (e) => {
+            logMessage('Key "${e.key}" released [event: keyup]');
+            if (e.key=="Enter") {
+                document.getElementById("edit-acercade").style.display="none"
+            }
+        });
+
+        // carga el contenido de un archivo de texto
+        // y lo muestra en el parrafo
+
+        function showfile(input) {
+            let file = input.files[0] ;
+            alert(`Nombre del archivo: ${file.name}`) ; // ej. my.png
+            alert(`Ultima modificación: ${file.lastModified}`) ; // ej. 123131321311
+
+            let reader = new FileReader() ;
+            reader.readAsText(file) ;
+            reader.onload = function() {
+                console.log(reader.result);
+                document.getElementById("text-acercade").innerText=reader.result;
+            };
+            reader.onerror = function() {
+                console.log(reader.error);  
+            };
+        }
+        
+    </script>
+
+<!-- Bootstrap JS -->
+<script src="dist/bootstrap/js/bootstrap.bundle.min.js"></script>  
+    </body>
+</html>
